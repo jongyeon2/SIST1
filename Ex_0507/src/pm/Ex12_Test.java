@@ -33,7 +33,7 @@ public class Ex12_Test {
 				if(j >=i) {
 					System.out.printf("%2c", '*');
 				} else {
-					System.out.print("  ");
+					System.out.printf("%2c", ' ');
 				}
 			}
 			System.out.println();
@@ -47,15 +47,12 @@ public class Ex12_Test {
 		  2*9=18	3*9=27	....	9*9=81	  
 		 */
 		
-		int a = 0;
-		for(int i=2; i<=9; i++) {
-			for(int k=1; k<=9; k++) {
-				a = i * k;
-				System.out.printf("%d*%d=%d%n",i,k,a);
-			}
-			System.out.println();
 		
-		}
-		
+		for(int i = 1; i <= 9; i++) {
+			for(int j = 2; j <= 9; j++) {
+				System.out.printf("%d * %d = %-4d", j, i, (i*j));
+			} // inner for
+			System.out.println(); //줄바꿈 
+		}// Outer for 
 	}
 }
