@@ -11,6 +11,7 @@ public class Pdf_3 {
 		System.out.println(msg);
 		System.out.println(msg.getClass());
 		
+		
 	}
 
 }
