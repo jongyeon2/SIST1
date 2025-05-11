@@ -9,6 +9,8 @@ public class pdf_2 {
 		s1 = s1 + "Yun-A!";
 		System.out.println("s1: " + s1);
 
+		int ran = (int)(Math.random()*11);
+		System.out.println(ran);
 	}
 
 }

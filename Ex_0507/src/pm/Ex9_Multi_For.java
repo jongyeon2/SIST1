@@ -10,8 +10,8 @@ public class Ex9_Multi_For {
 		  1 2 3 4 5
 		  1 2 3 4 5 
 		  */
-	for(int x=1; x<=3; x++) {	
-		for(int i=1; i<=5 ; i++) {
+	for(int x=1; x<=3; x++) {	// 행 
+		for(int i=1; i<=5 ; i++) { // 열 
 //			System.out.print(i+" ");
 			System.out.printf("%-2d ", i); //printf = 형식을 이용해서 출력한다는 의미
 //			%d = 숫자를 얘기함 100일경우 100100100 -> 이렇게 붙어서 출력됨
@@ -36,13 +36,16 @@ for(int k=1; k<=4; k++) {	// 행
 
 System.out.println("---------------------------------");
 
-for(int k=1; k<=2; k++) {
-	for(int i=1; i<=4; i++) {
-	System.out.printf("%-2d", i);
+	int num = 1; // 숫자 시작값
 	
+	for(int i = 0; i < 2; i++) {
+		for(int j = 0; j < 4; j++) { // 각 행에 4개의 숫자 출력
+			System.out.print(num + "");
+			num++; //숫자 증가 
+		}
+		System.out.println();
 	}
-	System.out.println();
-}
+
 		}
 
 }

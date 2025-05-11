@@ -15,20 +15,22 @@ public class Ex8_For {
 		
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("값");
+		
 		int v1 = scanner.nextInt();
 		int sum = 0;
+		
 		for(int i=1; i<= v1; i++) {
 			sum += i;
 		}
-		System.out.println("1부터" + v1 + "까지의 합" + sum);
+		System.out.println("1부터 " + v1 + "까지의 합" + sum);
 		
-		int su = (int)(Math.random() * 40 +10);
+		int su = (int)(Math.random() * 40 +10); // 10~50까지의 난수 
 		sum = 0; //sum변수 재사용 
 		
 		for(int i=0; i<=su; i++) {
 			sum+= i; //누적 
 		} // for의 끝
-		System.out.println("1부터" + su + "까지의 합:" + sum);
+		System.out.println("1부터 " + su + "까지의 합:" + sum);
 	}
 
 }
