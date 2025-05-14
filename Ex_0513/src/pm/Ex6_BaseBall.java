@@ -3,8 +3,8 @@ package pm;
 import java.util.Scanner;
 
 public class Ex6_BaseBall {
-	private int[] computer = new int[3];
-	private int[] user = new int[3];
+	 int[] computer = new int[3];
+	 int[] user = new int[3];
 	 int Strikecount = 0;
 	 int ballCount = 0;
 	 int cnt = 0;
@@ -39,12 +39,7 @@ public class Ex6_BaseBall {
 		return sb.toString();
 	}
 	
-	public void user() {
-		
-		++cnt;
-		Scanner scanner = new Scanner(System.in);
-		System.out.println(cnt +"차");
-		String str = scanner.nextLine();
+	public void user(String str) {
 		
 		for(int i = 0 ; i <str.length(); i++) { //사용자가 입력한 문자를 하나씩 빼서 user라는 배열에 넣어주기 위해 
 			char ch = str.charAt(i);
