@@ -11,7 +11,7 @@ public class Ex4_Company {
 		ArrayList<Ex4_Emp> ar = new ArrayList<Ex4_Emp>(5);
 		Scanner scanner = new Scanner(System.in);
 		
-		public Ex4_Company()
+		public void init()
 		{
 			Ex4_Emp e1 = new Ex4_Emp(20222468,"백종연","인턴","인사");
 			Ex4_Emp e2 = new Ex4_Emp(20224568,"김준수","인턴","개발");
@@ -25,10 +25,12 @@ public class Ex4_Company {
 			ar.add(e1);
 		}
 		
+		
+		
 	public Ex4_Emp getCleanup(int a) {
 		if(ar.contains(a)) 
 			return ar.get(a);
-		else
+	
 			return null;
 		
 		ar.get(0).
