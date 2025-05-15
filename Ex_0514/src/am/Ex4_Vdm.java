@@ -29,14 +29,13 @@ public class Ex4_Vdm {
 	}
 	
 	public String choice(int a) {
-		
-			Ex4_Drink drink = d1[a-1];// 원하는 음료수를 가져와 drink라는 변수에 저장 
-			String choice1 = drink.getName();
-			return choice1;
-		}
+		Ex4_Drink drink = d1[a-1]; // 원하는 음료수를 가져와 drink라는 변수에 저장 
+		String choice1 = drink.getName();
+		return choice1;
+	}
 	
 	public int pay (int b) {
-		Ex4_Drink drink = d1[b];
+		Ex4_Drink drink = d1[b-1];
 		int pay1 = drink.getPrice();
 		return pay1;
 	}

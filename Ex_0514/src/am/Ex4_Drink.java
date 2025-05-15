@@ -30,7 +30,7 @@ public class Ex4_Drink {
 		this.price = price;
 	}
 
-	Ex4_Drink(String name, int price, int number){
+	public Ex4_Drink(String name, int price, int number){
 		this.name = name;
 		this.price = price;
 		this.number = number;

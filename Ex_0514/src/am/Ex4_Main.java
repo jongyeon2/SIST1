@@ -21,7 +21,7 @@ public class Ex4_Main {
 		int answer2 = v1.pay(a);
 	
 		System.out.printf("%s를 선택하셨습니다\r\n",answer1);
-		System.out.printf("잔돈 %d원 입니다",answer2 - c);
+		System.out.printf("잔돈 %d원 입니다",c - answer2);
 		
 	}
 
