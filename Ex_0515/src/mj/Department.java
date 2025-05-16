@@ -15,7 +15,7 @@ public class Department {
 
 	@Override
 	public String toString() {
-		return "부서 이름: " + name + ", 부서장: " + boss + ", 부서 역할: " + createBy;
+		return "부서 이름:" + name + ",부서장:" + boss + ", 부서 역할:" + createBy;
 	}
 	
 	public String getName() {

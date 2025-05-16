@@ -2,6 +2,8 @@ package pm;
 
 import java.util.Scanner;
 
+import mj.Company;
+
 public class Ex4_Main {
 
 	public static void main(String[] args) {
@@ -12,24 +14,27 @@ public class Ex4_Main {
 //		-> 2022 -> 
 //		검색기능 구현하기 
 		
-		Ex4_Company e1 = new Ex4_Company(); // init 자동화
+		Ex4_Company comp = new Ex4_Company(); //comp 객체생성 
 		
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("선택:");
-		System.out.print("사번검색:1,  이름검색:2,  직책검색:3,  부서검색:4");
-		int push = scanner.nextInt();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("선택");
+		System.out.println("사번검색:1, 이름검색:2, 직책검색:3, 부서검색:4");
+		int cmd = scan.nextInt();
 		
-		switch(push) {
-		case 1 : // 사번검색
-			System.out.print("검색할 사번");
-			int answer = scanner.nextInt();
-			e1.getCleanup(answer);
-			
-		case 2 :	
-			System.out.println("검색할 이름");
-			
-		}
+		String msg = null;
+		String str = null;
 		
+		switch(cmd) {
+			case 1:{
+				System.out.println("검색한 사변:");
+				str = scan.next();
+//				msg = comp.searchEmp(cmd, str);
+				break;
+			}
+			default :
+				msg = "잘 못 입력하셨습니다.";
+		} // swtich의 끝 
+		System.out.println(msg);
 		
 	}
 

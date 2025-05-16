@@ -8,7 +8,7 @@ public class Ex4_Company {
 //	ArrayList 만들기 
 //	ArrayList에 emp 객체들을 저장
 //	searchEmp 메서드 생성 
-		public static ArrayList<Ex4_Emp> ar = new ArrayList<Ex4_Emp>(5);
+		public static ArrayList<Ex4_Emp> ar = new ArrayList<Ex4_Emp>();
 		
 		static { 
 			Ex4_Emp e1 = new Ex4_Emp(20222468,"백종연","인턴","인사");
@@ -22,30 +22,28 @@ public class Ex4_Company {
 			ar.add(e4);
 			ar.add(e5);
 		}
-		
-		
-		
-	public void getCleanup(int a) { // 사원 번호 검색
-		int v1 = 0;
-		for(int i = 0; i < ar.size(); i++) {
-			 v1 = ar.get(i).getCleanup();
-			if(v1 == a)
-				break;			
-		}
-		System.out.printf("사원번호 %d 입니다.",v1);
-	}
-	
-	public void getName (String answer) { // 사원 검색 
-		StringBuffer sb = new StringBuffer();
-		for(int i = 0; i < ar.size(); i++) {
-			 sb.append(ar.get(i).getName());
-			if(sb.equals(answer))
-				break;
-		}
-		System.out.printf("사원 %s입니다.",sb);
-	}
-		
 }
+		
+		
+////	public int searchEmp(int answer, String answer1) {
+//		for(int i = 0; i < ar.size(); i++) {
+//			int j = ar.get(i).getCleanup(); // arList에서 i번째에 해당하는 사번을 가져와서 j에 대입
+//			int k = j == answer ? j : 0;
+//			
+//			ar.contains(answer1);
+//		}
+//	}	
+//	public void getName (String answer) { // 사원 검색 
+//		StringBuffer sb = new StringBuffer();
+//		for(int i = 0; i < ar.size(); i++) {
+//			 sb.append(ar.get(i).getName());
+//			if(sb.equals(answer))
+//				break;
+//		}
+//		System.out.printf("사원 %s입니다.",sb);
+//	}
+//		
+//}
 
 
 
