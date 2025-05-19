@@ -22,28 +22,66 @@ public class Ex4_Company {
 			ar.add(e4);
 			ar.add(e5);
 		}
+		
+		public static void getEin(int answer) {//사번 검색 
+			boolean found = false;
+			
+			for(int i = 0; i < ar.size(); i++) { 
+				int ein = ar.get(i).getEin();
+				if(answer ==  ein) {
+					System.out.println(ar.get(i)); // toString()은 println에서 자동 호출
+					found = true;
+					break;
+				}
+			}//for 문의 끝 
+			if(!found)
+				System.out.println("찾으시는 사원이 없습니다.");
+		}//메서드의 끝 
+		
+		public static void getName(String name) { // 이름 검색 
+			boolean found = false;
+			
+			for(int i = 0; i < ar.size(); i++) {
+				String name1 = ar.get(i).getName();
+				if(name.equals(name1)) {
+					System.out.println(ar.get(i)); // toString() 메서드를 오버라이딩 했음으로 자동호출됨
+					found = true;
+					break;
+				}
+			}//for 문의 끝
+			if(!found)
+				System.out.println("찾으시는 사원이 없습니다.");
+		}
+		public static void getJob(String answer) { // 직책검색 
+			boolean found = false;
+			
+			for(int i = 0; i < ar.size(); i++) {
+				String job = ar.get(i).getPosition();
+				if(answer.equals(job)) {
+					System.out.println(ar.get(i));
+					found = true;
+					break;
+				}
+			}//for 문의 끝
+			if(!found)
+				System.out.println("찾으시는 직책이 없습니다.");
+		}//메서드의 끝 
+		
+		public static void getDepartment(String answer) {
+			boolean found = false;
+			
+			for(int i = 0; i < ar.size(); i++) {
+				String departmnet = ar.get(i).getDepartment();
+				if(answer.equals(departmnet)) {
+					System.out.println(ar.get(i));
+					found = true;
+					break;
+				}
+			}// for의 끝
+			if(!found)
+				System.out.println("찾으시는 부서가 없습니다.");
+		}// 메서드의 끝 
 }
-		
-		
-////	public int searchEmp(int answer, String answer1) {
-//		for(int i = 0; i < ar.size(); i++) {
-//			int j = ar.get(i).getCleanup(); // arList에서 i번째에 해당하는 사번을 가져와서 j에 대입
-//			int k = j == answer ? j : 0;
-//			
-//			ar.contains(answer1);
-//		}
-//	}	
-//	public void getName (String answer) { // 사원 검색 
-//		StringBuffer sb = new StringBuffer();
-//		for(int i = 0; i < ar.size(); i++) {
-//			 sb.append(ar.get(i).getName());
-//			if(sb.equals(answer))
-//				break;
-//		}
-//		System.out.printf("사원 %s입니다.",sb);
-//	}
-//		
-//}
 
 
 

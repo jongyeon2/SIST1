@@ -1,25 +1,30 @@
 package pm;
 
 public class Ex4_Emp { //사원 클래스 
-	private int cleanup;
+	private int ein;
 	private String name;
 	private String position;
 	private String department;
 	
-	public Ex4_Emp(int cleanup, String name, String position, String department) {
-		this.cleanup = cleanup;
+	public Ex4_Emp(int ein, String name, String position, String department) {
+		this.ein = ein;
 		this.name = name;
 		this.position = position;
 		this.department = department;
 	}
 	
+	@Override
+	public String toString() {
+		return "사원정보 : " + ein + " 사원 이름 : " + name + " 직책 : " + position + " 부서 : " + department;
+	}
+	
 	public Ex4_Emp() {};
 	
-	public int getCleanup() {
-		return cleanup;
+	public int getEin() {
+		return ein;
 	}
-	public void setCleanup(int cleanup) {
-		this.cleanup = cleanup;
+	public void setEin(int ein) {
+		this.ein = ein;
 	}
 	public String getName() {
 		return name;
