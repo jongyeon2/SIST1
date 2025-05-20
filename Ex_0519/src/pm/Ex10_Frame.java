@@ -1,5 +1,8 @@
 package pm;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 
 public class Ex10_Frame extends JFrame {
@@ -14,6 +17,7 @@ public class Ex10_Frame extends JFrame {
 		frame.setSize(500, 400); //창 크기 설정 메서드 int형
 		frame.setLocation(300, 200); // 창 위치 설정 
 		frame.setVisible(true); // 창 보여주기 
+	
 		
 	}
 	

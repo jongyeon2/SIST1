@@ -13,6 +13,7 @@ public class Ex11_Frame extends JFrame {
 		this.setVisible(true);
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE); // 창을 닫으면 알아서 콘솔 터미널에서 종료됨 
+		
 	}
 
 	public static void main(String[] args) {
