@@ -22,13 +22,11 @@ public class Ex8_Test extends JFrame implements MouseListener {
 		north_Jp = new JPanel();
 		center_Jp = new JPanel();
 		ta = new JTextArea();
-		int i = 0 ;
+		
 //	button객체에 숫자 넣기
-		for(int j = 2; j <= 9 ; j++) {
-			String result = String.valueOf(j);
-			bt_ar[i] = new JButton(result);
-			i++;
-		}		
+		for(int i = 0; i < bt_ar.length; i++) {
+			bt_ar[i] = new JButton(String.valueOf(i+2));
+		}
 				
 //		north 나무 판자에 버튼 8개를 넣는다.	
 	for(int k = 0; k < bt_ar.length; k ++) {
@@ -59,25 +57,30 @@ public class Ex8_Test extends JFrame implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// 마우스 클릭하면 나오는 이벤트
 		Object obj = e.getSource();
+		int number;
+		if(obj instanceof JButton)
+			((JButton) obj).getText();
 		
-		for (int i = 0; i < bt_ar.length; i++) {
-			int j = i + 2;
-				for(int k =1; k<=9; k++) {
-					if(obj == bt_ar[i]) {
-						StringBuffer sb = new StringBuffer();
-						sb.append(j);
-						sb.append("단\r\n");
-						sb.append(j);
-						sb.append("x");
-						sb.append(k);
-						sb.append("=");
-						sb.append(j * k );
-						sb.append("\r\n");
-						
-						ta.append(sb.toString());
-					}
-				}
-		}
+
+		
+//		for (int i = 0; i < bt_ar.length; i++) {
+//			int j = i + 2;
+//				for(int k =1; k<=9; k++) {
+//					if(obj == bt_ar[i]) {
+//						StringBuffer sb = new StringBuffer();
+//						sb.append(j);
+//						sb.append("단\r\n");
+//						sb.append(j);
+//						sb.append("x");
+//						sb.append(k);
+//						sb.append("=");
+//						sb.append(j * k );
+//						sb.append("\r\n");
+//						
+//						ta.append(sb.toString());
+//					}
+//				}
+//		}
 	}
 
 
