@@ -86,7 +86,6 @@ public class Ex5_TestCard extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if(obj == login){
-			
 			String n = name_tf.getText().trim();
 			if(n.length() > 0) {
 				//대화명을 1자라도 입력한 경우 card 변경 
@@ -95,5 +94,6 @@ public class Ex5_TestCard extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(this, "대화명을 입력하세요");
 		}
 	}
+	
 
 }
