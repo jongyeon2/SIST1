@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 
 public class Ex7_Test extends JFrame {
 	JPanel p;
+	
 	int x = 220;
 	int y = 170;
 	int num = 0;
