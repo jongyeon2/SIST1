@@ -82,7 +82,6 @@ public class Ex3_Game extends JFrame {
 					buf_g.drawImage(missile, b.x,b.y,this);
 				}
 				
-				
 				// 화면에 나타내기 위해 이미지를 패널에 붙여넣는다.
 				g.drawImage(buf, 0, 0, this);
 				
@@ -96,7 +95,6 @@ public class Ex3_Game extends JFrame {
 		p.setFocusable(true); // 화면이 무조건 활성화 
 		
 		this.setVisible(true);
-		
 		
 		t.start(); //배경 움직이는 스레드 시작
 
