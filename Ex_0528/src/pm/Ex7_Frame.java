@@ -64,16 +64,7 @@ public class Ex7_Frame extends JFrame {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				// 종료하기 전에 해야할 일이 있으면 이쯤에서 해야함 
-				if(fis != null) {
-				try {
-					bis.close();
-					fis.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-				System.exit(0);
+				clodsed();
 			}
 			
 		});
@@ -83,17 +74,7 @@ public class Ex7_Frame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 종료하기 전에 해야할 일이 있다면 이쯤에서 해야 한다.
-				if(fis != null) {
-				try {
-					fis.close();
-					bis.close();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-				System.exit(0);
-				
+				clodsed();
 			}
 		});
 		
@@ -109,7 +90,7 @@ public class Ex7_Frame extends JFrame {
 					// APROVE_OPTION이면 사용자가 파일을 선택한 경우
 					
 					f = jfc.getSelectedFile();
-					
+					if(f.exists()) {
 					// 위에서 받은 파일을 가지고 존재여부 확인
 						
 					FileInputStream fis = null; // 예외처리를 위해 미리 선언한다.
@@ -123,31 +104,45 @@ public class Ex7_Frame extends JFrame {
 						// size와 byte배열 선언 
 						int size = -1;
 						byte[] buf = new byte[2048];  
+						ta.setText(""); // 청소
+						StringBuilder sb = new StringBuilder();
 						
 						// 반복문 처리하면서 byte배열에 있는 자원을 가지고 문자열생성 
 						while((size = bis.read(buf)) != -1) {
 							String str = new String(buf, 0, size);
 							// 생성된 문자열을 ta에 추가 
-							ta.append(str);
+							sb.append(str);
+//							ta.append(str);
 						}
+						// 표현할 모든 데이터는 sb가 가지고 있다.
+						ta.setText(sb.toString());
+						ta.setCaretPosition(0); // 화면을 맨 위로 이동시킨다.
+						
 					} catch (Exception e2) {
 						// TODO: handle exception
 						e2.printStackTrace();
-					}finally {
-						try {
-							fis.close();
-							bis.close();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
 					}
 					
 				}
 				
+			   }
 			}
 		});
 	}// 생성자 끝 
+	
+	private void clodsed() { // 프로그램 종료 
+		if(fis != null) {
+			try {
+				bis.close();
+				fis.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+			System.exit(0);
+		}
+		
 	
 	public static void main(String[] args) {
 		// 프로그램 시작 
