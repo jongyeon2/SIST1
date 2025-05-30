@@ -29,8 +29,8 @@ public class Ex8_File_info {
 				Map<String,	Object> att = Files.readAttributes(Paths.get(sub_file.getAbsolutePath()),"*");
 				
 					ar[i][0] = sub_file.getName(); // 파일명
-					FileTime ft = (FileTime)att.get("lastModifiedTime"); //FileTime으로 캐스팅, 최종 수정일 
 					
+					FileTime ft = (FileTime)att.get("lastModifiedTime"); //FileTime으로 캐스팅, 최종 수정일 
 					ar[i][1] = ft.toString(); // String타입으로 삽입해야 되기 때문
 					
 					ar[i][2] = String.valueOf(sub_file.length()); // 용량 

@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.net.URL;
 
 import javax.swing.JButton;
@@ -30,6 +31,7 @@ public class Ex6_URL extends JFrame {
 	//파일 처리를 위한 스트림 객체들 
 	BufferedInputStream bis;
 	BufferedOutputStream bos;
+	
 	
 	// 생성자 
 	public Ex6_URL() {
@@ -99,7 +101,7 @@ public class Ex6_URL extends JFrame {
 							// 읽은 자원들은 모두 buf라는 배열에 저장된 상태다.
 							// 읽기한 수는 size가 기억함으로 buf의 0번지부터 size수만큼
 							// 쓰기하면 된다.
-							bos.write(buf, 0, size);
+							bos.write(buf, 0, size); // 0번지 부터 몇개(size) 읽을까?
 							bos.flush();
 						}// while의 끝 
 						
