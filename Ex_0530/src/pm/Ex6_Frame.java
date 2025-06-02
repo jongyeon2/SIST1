@@ -24,8 +24,9 @@ public class Ex6_Frame extends JFrame {
 	
 	// 파일로부터 자원을 읽기하기 위한 스트림 
 	ObjectInputStream ois;
-	File selectedFile = new File("c:/my_study/test/abc.txt"); //선택된 파일 
 	ObjectOutputStream oos;
+	File selectedFile = new File("c:/my_study/test/abc.txt"); //선택된 파일 
+	
 	
 	//생성자
 	public Ex6_Frame() {
@@ -62,12 +63,16 @@ public class Ex6_Frame extends JFrame {
 		setBounds(300, 100, 500, 500);
 		this.setVisible(true);
 		
+		readFile();
+		
 		
 		// 이벤트 감지자등록
 		this.addWindowListener(new WindowAdapter() {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
+				
+				saveFile();
 				closed();
 
 			}
@@ -88,7 +93,9 @@ public class Ex6_Frame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				saveFile();
+				JOptionPane.showMessageDialog(Ex6_Frame.this, "저장완료");
 			}
 		});
 	
@@ -120,8 +127,10 @@ public class Ex6_Frame extends JFrame {
 		try {
 			ois = new ObjectInputStream(new FileInputStream(selectedFile));
 			
-			Object obj = ois.readObject(); // 객체읽기 
-			e_list = (ArrayList<Ex6_emp>) obj;
+			Object obj = ois.readObject(); // 객체읽기
+			if(obj != null)
+				e_list = (ArrayList<Ex6_emp>) obj;
+			
 			viewTable();
 		} catch (Exception e) {
 			e.printStackTrace();
