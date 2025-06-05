@@ -3,12 +3,13 @@ package pm;
 import java.io.Serializable;
 
 public class Protocol implements Serializable {
-	int cmd; // 1:접속, 2:채팅 3:종료: 4:방만들기 5:방나가기
-	String msg; // 메세지 
-	
-	String[] user_names; // 대기자 명단 
-	String[] room_names; // 방 제목들 
-	
+
+	int cmd; // 1:접속, 2:채팅, 3:종료, 4:방만들기, 5:방나가기....
+	String msg;
+	int index;
+
+	String[] user_names;// 대기자 명단
+	String[] room_names;// 방 제목들
 	public int getCmd() {
 		return cmd;
 	}
@@ -33,4 +34,6 @@ public class Protocol implements Serializable {
 	public void setRoom_names(String[] room_names) {
 		this.room_names = room_names;
 	}
+
+
 }
