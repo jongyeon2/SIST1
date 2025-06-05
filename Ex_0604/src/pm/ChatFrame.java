@@ -4,6 +4,7 @@
  */
 package pm;
 
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,14 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -49,28 +57,36 @@ public class ChatFrame extends javax.swing.JFrame {
 					case 1: // 어떤 누군가가 접속했을 때 수행
 							// 명단을 받아서 u_list라는 JList에 넣어준다.
 							user_list.setListData(p.getUser_names());
+							room_list.setListData(p.getRoom_names());
 							break;
 					case 3 : 
 						break bk;
+					case 4 : // case4번이 돌아온다면 
+						// 내가 방을 만들고 다시 4번 프로토콜을 받는다.
+						// 명단과 입장 메세지도 같이 받아 화면에 표현한다.
+						join_list.setListData(p.getUser_names());
+						ta.append(p.getMsg());
+						card.show(getContentPane(), "chatRoom"); 
+						break;
 					}// switch의 끝 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}// while문의 끝 
-			try {
-			if(in != null)
-				in.close();
-			if(out != null)
-				out.close();
-			if(s != null)
-				s.close();
+			closed();
+			
 			System.exit(0);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 		} 
     	
     };
+    
+    // 채팅화면에 필요한 객체
+    
+    JPanel card3, card3_e, card3_s;
+    JButton out_bt, send_bt;
+    JTextArea ta;
+    JTextField input_tf;
+    JList<String> join_list; // 참여자 명단 표현 
     
     public ChatFrame() {
         initComponents(); //화면 구성
@@ -80,13 +96,15 @@ public class ChatFrame extends javax.swing.JFrame {
 
 			@Override
 			public void windowClosing(WindowEvent e) {
+				// 접속이 안된 상태면 바로 종료!
+				// 그렇지 않다면 3번 프로토콜 생성 후 전송만 
 				if(s == null)
 					System.exit(0);
 				else {
 					Protocol p = new Protocol();
-					p.cmd = 3;
+					p.setCmd(3); 
 					try {
-						out.writeObject(p);
+						out.writeObject(p); // 나와 유일하게 연결된 복사본에게 조용히 
 						out.flush();
 					} catch (Exception e2) {
 						e2.printStackTrace();
@@ -96,6 +114,7 @@ public class ChatFrame extends javax.swing.JFrame {
 			}
         	
         });
+        
         jButton5.addActionListener(new ActionListener() {
 			
 			@Override
@@ -115,6 +134,7 @@ public class ChatFrame extends javax.swing.JFrame {
 				
 			
 		});
+        
         jButton1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -153,8 +173,46 @@ public class ChatFrame extends javax.swing.JFrame {
 			}
 			
 		});
+        
+        jButton2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 방만들기 
+				String str = JOptionPane.showInputDialog(ChatFrame.this, "방 제목을 입력하세요");
+				if(str != null && str.trim().length() > 0) {
+					// 방제목을 1자라도 입력한 경우
+					// 방을 만들 수 있는 프로토콜 생성
+					Protocol p = new Protocol();
+					p.setCmd(4);
+					p.setMsg(str); // 방제목 담기
+					
+					try {
+						out.writeObject(p);
+						out.flush();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
+				}
+			}
+		});
+        
     }
-
+    
+    public void closed() { // 종료를 위한 메서드 
+    	try {
+    		if(out != null) // out부터 스트림 닫기 
+				out.close();
+			if(in != null)
+				in.close();
+			if(s != null)
+				s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -262,6 +320,34 @@ public class ChatFrame extends javax.swing.JFrame {
         card2.add(jPanel4, java.awt.BorderLayout.LINE_END);
 
         getContentPane().add(card2, "roomList");
+        
+        // 채팅 화면 구성하기 -------------------------------------
+        // 각 패널들의 덩어리 생각 
+        
+        
+        card3 = new JPanel(new BorderLayout());
+        card3_e = new JPanel(new BorderLayout());
+        card3_s = new JPanel(new BorderLayout());
+        
+        card3.add(new JScrollPane(ta = new JTextArea()));
+        ta.setEditable(false); // 비활성화 
+        
+        //우측 작업
+        card3_e.add(new JLabel("[참여자]"), BorderLayout.NORTH);
+        card3_e.add(new JScrollPane(join_list = new JList<String>())); // 가운데 
+        card3_e.add(out_bt = new JButton("방 나가기"), BorderLayout.SOUTH);
+        card3.add(card3_e,BorderLayout.EAST);
+        
+        // 하단 작업
+        card3_s.add(input_tf = new JTextField());
+        card3_s.add(send_bt = new JButton("보내기"), BorderLayout.EAST);
+        card3.add(card3_s, BorderLayout.SOUTH);
+        // 여기까지 card3 에각 패널들이 들어감 
+        
+        // card3를 현재 창에 "chatRoom"이라는 이름으로 추가 
+        getContentPane().add(card3, "chatRoom");
+        
+        //----------------------------------------------------------
         
         
         pack();

@@ -27,11 +27,12 @@ public class ChatServer {
 	};
 	
 	ArrayList<CopyClient> u_list; // 유저대기방
-//	ArrayList<ChatRoom> r_list;  // 방 목록 
+	ArrayList<ChatRoom> r_list;  // 방 목록 
 	
 	// 기본생성자 
 	public ChatServer() { // 서버의 문을 열고 접속자들을 맞이한다.
 		u_list = new ArrayList<>(); // 생성하는 동시에 객체 생성 
+		r_list = new ArrayList<>(); // 방이 만들어지면 저장될 공간 
 		try {
 			ss = new ServerSocket(5555); // 서버문 열고
 			System.out.println("서버 시작합니다"); 
@@ -49,6 +50,18 @@ public class ChatServer {
 	
 	public void removeClient(CopyClient cc) { // 유저 대기방에서 삭제 
 		u_list.remove(cc); 
+		// 대기실 명단과 방 목록을 갱신 하도록 프로토콜을 작업
+		Protocol p = new Protocol();
+		p.setCmd(1);
+		// 대기자 명단 수집 
+		p.setUser_names(getNames());
+		
+		// 방 목록 수집 
+		p.setRoom_names(getRoomNames());
+		
+		// 대기실 모두에게 전달 
+		sendProtocol(p);
+		
 	}
 	
 	public void sendProtocol(Protocol p) { // 대기자 모두에게 전달하는 기능 
@@ -62,7 +75,6 @@ public class ChatServer {
 				cc.out.writeObject(p);
 				cc.out.flush();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -81,6 +93,17 @@ public class ChatServer {
 		return names;
 	}
 	
+	// 방 목록을 수집하여 반환하는 기능 
+	public String[] getRoomNames() {
+		// ArrayList에 있는 요소들에게 이름을 받아서 배열화 시킨다.
+		String[] names = new String[r_list.size()]; // 유저 대기방의 크기만큼의 배열 
+		int i = 0;
+		for(ChatRoom cr : r_list) { 
+			// 채팅방 객체를 하나씩 얻어내어 방 제목을 수집한다.
+			names[i] = cr.roomName; // 가져온 복사본의 이름을 protocol 유저대기방에 저장 ;
+		}
+		return names;
+	}
 	
 	public static void main(String[] args) {
 		// 프로그램 시작 
